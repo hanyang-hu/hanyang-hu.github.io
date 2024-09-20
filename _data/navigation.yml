@@ -7,7 +7,7 @@
 main:
     
   - title: "Projects & Blogs"
-    url: /projects/
+    url: /_projects/
     
   - title: "CV"
     url: /files/hanyang_cv.pdf
