@@ -24,8 +24,8 @@ author:
   avatar           : "./hanyang_photo.jpg"
   name             : "Hu Hanyang"
   pronouns         : # example: "she/her"  
-  bio              : "Final-year undergraduate student at the National University of Singapore, majoring in Mathematics."
-  location         : "Singapore"
+  bio              : "Final-year undergraduate student at the National University of Singapore, majoring in mathematics."
+  location         : # City, Country
   employer         : "National University of Singapore"
   uri              : # URL
   email            : "hanyang_hu@u.nus.edu" 
