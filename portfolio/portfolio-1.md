@@ -1,5 +1,5 @@
 ---
-title: "Kolmogorov Complexity"
+title: "A Note on Kolmogorov Complexity and Shannon Entropy"
 excerpt: "My report for the course project in CS3236 Introduction to Information Theory."
 collection: portfolio
 ---
