@@ -21,7 +21,7 @@ repository               : "hanyang-hu/hanyang-hu.github.io"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "/images/hanyang_photo.png"
+  avatar           : "/images/hanyang_photo.jpg"
   name             : "Hu Hanyang"
   pronouns         : # example: "she/her"  
   bio              : "Final-year undergraduate student at the National University of Singapore, majoring in Mathematics."
