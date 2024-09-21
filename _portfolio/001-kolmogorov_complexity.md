@@ -3,7 +3,7 @@ title: "A Note on Kolmogorov Complexity and Shannon Entropy"
 excerpt: "The report for my course project in Introduction to Information Theory.<br/><img src='/images/kolmogorov_upper_bound.png'>"
 collection: portfolio
 ---
-Links to the materials: [report](./CS3236_KolmogorovComplexity.pdf).
+Links to the material: [report](./CS3236_KolmogorovComplexity.pdf).
 
 This summary is what I have written for my course project in [CS3236 Introduction to Information Theory](https://nusmods.com/courses/CS3236/introduction-to-information-theory) during AY22/23 Sem 2. This is my first time writing stuffs this long in LaTex other than my maths assignments (say, those for the notoriously difficult [MA2101S Linear Algebra II (S)](https://nusmods.com/courses/MA2101S/linear-algebra-ii-s)). I burnt for many days without studying anything else to understand those materials, which was quite fun. 
 
