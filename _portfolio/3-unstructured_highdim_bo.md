@@ -1,6 +1,6 @@
 ---
 title: "Unstructured High-Dimensional Bayesian Optimization"
-excerpt: "The report and presentation for my summer research project in 2024.<br/><img src='./eggholder_2d.png'>"
+excerpt: "The report and presentation for my summer research project in 2024.<br/><img src='./images/eggholder_2d.png'>"
 collection: portfolio
 ---
 
