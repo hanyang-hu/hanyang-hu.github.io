@@ -1,6 +1,6 @@
 ---
 title: "A Note on Kolmogorov Complexity and Shannon Entropy"
-excerpt: "The report for my course project in Introduction to Information Theory.<br/><img src='/images/kolmogorov_lower_bound.png'>"
+excerpt: "The report for my course project in Introduction to Information Theory.<br/><img src='/images/kolmogorov_upper_bound.png'>"
 collection: portfolio
 ---
 
