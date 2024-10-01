@@ -20,7 +20,7 @@ Consider the disjoint union \\(\tilde{E} = \sqcup_{\alpha \in I} U_\alpha \times
 
 We have a natrual surjection \\(\text{CL}: \tilde{E} \to E\\) by sending \\((x, v)\\) to its equivalence class. We equip \\(E\\) with the quotient topology, then \\(\pi: E \to X\\) defined by \\(\pi(\text{CL}(x, v)) = x\\) is an \\(\mathcal{S}\\)-bundle.
 
-This shows the **existence** of vector bundles given a collection of transition functions, and it is natural to ask whether such construction is **unique** (which is a question raised by my classmate in [MA5210 Differentiable Manifolds](https://nusmods.com/courses/MA5210/differentiable-manifolds)). Let \\(\pi_0: E_0 \to X\\) and \\(\pi_1: E_1 \to X\\) be \\(\mathcal{S}\\)-bundles with the same trivializing open cover \\(\left\{U_\alpha\right\}\\) and collection of transition functions \\(\left\{g_{\alpha\beta}\right\}\\), it turns out that they are indeed \\(\mathcal{S}\\)-bundle isomorphic. 
+This shows the **existence** of vector bundles given a collection of transition functions, and it is natural to ask whether such construction is **unique** (which is a question raised by my classmate in [MA5210 Differentiable Manifolds](https://nusmods.com/courses/MA5210/differentiable-manifolds)). Let \\(\pi_0: E_0 \to X\\) and \\(\pi_1: E_1 \to X\\) be \\(\mathcal{S}\\)-bundles with the same trivializing open cover \\(\\{U_\alpha\\}\\) and collection of transition functions \\(\\{g_{\alpha\beta}\\}\\), it turns out that they are indeed \\(\mathcal{S}\\)-bundle isomorphic. 
 
 My approach was inspired by a remark in [Wells] (after Example 2.12) on how to construct a new section by putting together a collection of compatible sections defined on trivializing open sets.
 
@@ -35,5 +35,5 @@ Consequently, we have \\((\psi_\alpha^{-1} \circ \phi_\alpha)(v) = (\psi_\beta^{
 It is easy to verify that \\(f: E_0 \to E_1\\) is bijective (the inverse is \\(f^{-1}(v) = (\phi_\alpha^{-1}\circ \psi_\alpha)(v)\\) for \\(v \in \pi_1^{-1}(U_\alpha)\\)) and is an \\(\mathcal{S}\\)-isomorphism (since \\(\phi_\alpha, \psi_\alpha\\) are \\(\mathcal{S}\\)-isomorphisms). 
 
 Furthermore, \\(f\\) is fibre-preserving and gives a \\(K\\)-linear isomorphism on each fibre. Specifically, for every \\(p \in U_\alpha \subset X\\), we have 
-\\[f_p: E_{0,p} \xrightarrow{\phi_\alpha} \left\{p\right\}\times K^r \xrightarrow{\psi_\alpha^{-1}} E_{1,p}.\\]
+\\[f_p: E_{0,p} \xrightarrow{\phi_\alpha} \\{p\\}\times K^r \xrightarrow{\psi_\alpha^{-1}} E_{1,p}.\\]
 Consequently, \\(f: E_0 \to E_1\\) is an \\(\mathcal{S}\\)-bundle isomorphism.
