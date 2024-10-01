@@ -16,7 +16,7 @@ satisfying the following equalities:
 
 2. $$g_{\alpha\alpha}(q) = \mathbf{I}_{r}$$ for $$q \in U_\alpha$$.
 
-Let \\(\tilde{E} = \sqcup_{\alpha \in I} U_\alpha \times K^r\\) be the disjoint union equipped with the natural product topology and \\(\mathcal{S}\\)-structure. Define an equivalence relation on \\(\tilde{E}\\) such that for \\((x, v) \in U_\beta \times K^r\\) and \\((y, w) \in U_\alpha \times K^r\\), \\((x, v) \sim (y, w)\\) iff. \\(y = x\\) and \\(w = g_{\alpha\beta}(x)v\\). This is indeed an equivalence relation due to the constraints on the transition functions. 
+Consider the disjoint union \\(\tilde{E} = \sqcup_{\alpha \in I} U_\alpha \times K^r\\) equipped with the natural product topology and \\(\mathcal{S}\\)-structure. Define an equivalence relation on \\(\tilde{E}\\) such that for \\((x, v) \in U_\beta \times K^r\\) and \\((y, w) \in U_\alpha \times K^r\\), \\((x, v) \sim (y, w)\\) iff. \\(y = x\\) and \\(w = g_{\alpha\beta}(x)v\\). This is indeed an equivalence relation due to the constraints on the transition functions. 
 
 We have a natrual surjection \\(\text{CL}: \tilde{E} \to E\\) by sending \\((x, v)\\) to its equivalence class. We equip \\(E\\) with the quotient topology, then \\(\pi: E \to X\\) defined by \\(\pi(\text{CL}(x, v)) = x\\) is an \\(\mathcal{S}\\)-bundle.
 
