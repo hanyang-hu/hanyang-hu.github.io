@@ -1,6 +1,6 @@
 ---
 title: "Uniqueness of Vector Bundles From a Collection of Transition Maps"
-excerpt: "Regarding a question from a classmate in MA5210 Differential Manifolds.<br/><img src='/images/bundle_transition_function.png'>"
+excerpt: "Regarding a question from a classmate in MA5210 Differentiable Manifolds.<br/><img src='/images/bundle_transition_function.png'>"
 collection: portfolio
 ---
 
@@ -20,7 +20,7 @@ Let \\(\tilde{E} = \sqcup_{\alpha \in I} U_\alpha \times K^r\\) be the disjoint 
 
 We have a natrual surjection \\(\text{CL}: \tilde{E} \to E\\) by sending \\((x, v)\\) to its equivalence class. We equip \\(E\\) with the quotient topology, then \\(\pi: E \to X\\) defined by \\(\pi(\text{CL}(x, v)) = x\\) is an \\(\mathcal{S}\\)-bundle.
 
-This shows the **existence** of vector bundles given a collection of transition functions, and it is natural to ask whether such construction is **unique**. Let \\(\pi_0: E_0 \to X\\) and \\(\pi_1: E_1 \to X\\) be \\(\mathcal{S}\\)-bundles with the same trivializing open cover \\(\{U_\alpha\}\\) and collection of transition functions \\(\{g_{\alpha\beta}\}\\), it turns out that they are \\(\mathcal{S}\\)-bundle isomorphic. 
+This shows the **existence** of vector bundles given a collection of transition functions, and it is natural to ask whether such construction is **unique** (which is a question raised by my classmate in [MA5210 Differentiable Manifolds](https://nusmods.com/courses/MA5210/differentiable-manifolds)). Let \\(\pi_0: E_0 \to X\\) and \\(\pi_1: E_1 \to X\\) be \\(\mathcal{S}\\)-bundles with the same trivializing open cover \\(\{U_\alpha\}\\) and collection of transition functions \\(\{g_{\alpha\beta}\}\\), it turns out that they are \\(\mathcal{S}\\)-bundle isomorphic. 
 
 My approach was inspired by Remark (c) right after Example 2.12 in [Wells] on how to construct a new section by putting together a collection of compatible sections defined on trivializing open sets.
 
