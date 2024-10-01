@@ -11,6 +11,6 @@ I am a final-year undergraduate student in [Mathematics at the National Universi
 
 I am a participant of the [Special Programme in Mathematics](https://www.math.nus.edu.sg/ug/spm/) at NUS and was the aimbot team lead at [NUS Calibur Robotics](https://www.linkedin.com/company/nuscaliburrobotics/posts/?feedView=all) for two years (from 2022 to 2024).
 
-My research interest lies in learning-based planning and deep reinforcement learning, with a current emphasis on enhancing sample efficiency and enabling the online acquisition of new knowledge for uncertainty-aware models (e.g., Gaussian process regression) within limited computation budgets and time. 
+My research interest includes learning-based planning and deep reinforcement learning, with a current focus on enhancing sample efficiency and enabling the online acquisition of new knowledge for uncertainty-aware models (e.g., Gaussian process regression) within limited computation and time budgets. Additionally, I am interested in exploring methods that aid data-driven decision-making in general, e.g. representation learning and trajectory predictions.
 
 I am looking for research assistantships or internships in relevant fields. Here is my [CV](https://hanyang-hu.github.io/files/hanyang_cv.pdf).
