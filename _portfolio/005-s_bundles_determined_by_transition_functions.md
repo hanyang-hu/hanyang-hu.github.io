@@ -1,6 +1,6 @@
 ---
 title: "Uniqueness of Vector Bundles From a Collection of Transition Maps"
-excerpt: "Regarding a question from a classmate in MA5210 Differentiable Manifolds.<br/><img src='/images/bundle_transition_function.png'>"
+excerpt: "Regarding a question in MA5210 Differentiable Manifolds.<br/><img src='/images/bundle_transition_function.png'>"
 collection: portfolio
 ---
 
