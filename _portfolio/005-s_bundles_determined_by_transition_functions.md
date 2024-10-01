@@ -12,9 +12,9 @@ Let \\(X\\) be an \\(\mathcal{S}\\)-manifold. Suppose \\(X\\) has an open coveri
 \\[g_{\alpha\beta}: U_\alpha \cap U_\beta \to \text{GL}(r, K)\\]
 satisfying the following equalities: 
 
-1. $$g_{\alpha\beta} \circ g_{\beta\gamma} \circ g_{\gamma\alpha} = \mathbf{I}_r$$ on $$U_\alpha \cap U_\beta \cap U_\gamma$$ (in terms of matrix multiplication); 
+1. $$g_{\alpha\beta}(q) \circ g_{\beta\gamma}(q) \circ g_{\gamma\alpha}(q) = \mathbf{I}_r$$ for $$q \in U_\alpha \cap U_\beta \cap U_\gamma$$; 
 
-2. $$g_{\alpha\alpha} = \mathbf{I}_{r}$$ on $$U_\alpha$$.
+2. $$g_{\alpha\alpha}(q) = \mathbf{I}_{r}$$ for $$q \in U_\alpha$$.
 
 Let \\(\tilde{E} = \sqcup_{\alpha \in I} U_\alpha \times K^r\\) be the disjoint union equipped with the natural product topology and \\(\mathcal{S}\\)-structure. Define an equivalence relation on \\(\tilde{E}\\) such that for \\((x, v) \in U_\beta \times K^r\\) and \\((y, w) \in U_\alpha \times K^r\\), \\((x, v) \sim (y, w)\\) iff. \\(y = x\\) and \\(w = g_{\alpha\beta}(x)v\\). This is indeed an equivalence relation due to the constraints on the transition functions. 
 
