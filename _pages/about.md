@@ -13,4 +13,4 @@ I am a participant of the [Special Programme in Mathematics](https://www.math.nu
 
 My research interest includes planning and reinforcement learning, with a current focus on enhancing sample efficiency and enabling the online acquisition of new knowledge for uncertainty-aware models (e.g., Gaussian process regression) within limited computation and time budgets. In addition, I am generally interested in exploring methods that could aid data-driven decision-making, such as representation learning and behavioral prediction.
 
-I am looking for research assistantships or internships in relevant fields. Here is my [CV](https://hanyang-hu.github.io/files/hanyang_cv.pdf).
+I am looking for research assistantships or internships in relevant fields. Here is my [resume](https://hanyang-hu.github.io/files/hanyang_resume.pdf).
