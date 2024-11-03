@@ -4,7 +4,7 @@ excerpt: "A personal project to implement RL methods and test on the HighwayEnv.
 collection: portfolio
 ---
 
-Links to the code: [social attention](https://github.com/hanyang-hu/social-attention-exp) \| [behavioral cloning & implicit Q learning](https://github.com/hanyang-hu/imitation-learning-exp) \| [state space models](https://github.com/hanyang-hu/ssm-planning-exp)
+Links to the code: [social attention](https://github.com/hanyang-hu/social-attention-exp) \| [behavioral cloning & implicit Q learning](https://github.com/hanyang-hu/imitation-learning-exp) \| [state space models](https://github.com/hanyang-hu/ssm-planning-exp).
 
 My motivation for implementing RL algorithms in the [HighwayEnv](https://github.com/Farama-Foundation/HighwayEnv) stems from an interest in scenarios where observations are provided as a set of inputs, rather than as feature vectors or images. For instance, consider an aimbot system that uses bounding boxes from a YOLO object detection model, then the observations are given as a set, which is permutation-invariant. This setup requires the use of permutation-invariant architectures, such as [Deep Sets](https://arxiv.org/abs/1703.06114) or [Social Attention](https://arxiv.org/abs/1911.12250). I implemented both, and as anticipated, the attention mechanism performed better.
 
