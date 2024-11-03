@@ -6,4 +6,14 @@ collection: portfolio
 
 Link to the code: [GitHub repository](https://github.com/hanyang-hu/HS2914-auto-correction-project)
 
-Although this is a group project, I will mainly discuss the part that has been done by myself in the post.
+Although this is a group project, I will mainly discuss the part that has been done by myself in the post. My part is to implement a simplified version of [this paper](https://aclanthology.org/W19-4420.pdf) that combines large language models with the [noisy channel model](https://web.stanford.edu/~jurafsky/slp3/B.pdf) for automatic sentence correction. Essentially, the LLMs are used as a prior for candidate words, and the noisy channel model are defined to be a likelihood, then the sentence correction problem could be formulated as maximizing the posterior.
+
+Specifically, I choose the [BERT model from Hugging Face](https://huggingface.co/docs/transformers/model_doc/bert) and define the log likelihood as follows:
+\\[
+    \log P(\text{original\_word}\,|\,\text{candidate}) = 
+    \begin{cases} 
+    \alpha & \text{if } \text{candidate} = \text{original\_word} \\
+    -\gamma \cdot \log(d(\text{candidate}, \text{surface\_word})) & \text{otherwise}
+    \end{cases}
+\\]
+where $d(\cdot, \cdot)$ refers to the Damerau-Levenshtein edit distance.
