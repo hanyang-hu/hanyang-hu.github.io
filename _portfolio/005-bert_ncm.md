@@ -14,6 +14,7 @@ which is especially good at "understanding" the meaning of sentences: even if pa
 
 When it comes to the noisy channel model, the log likelihood is defined as follows:
 \\[
+$$
 \begin{aligned}
 \log P(x\,|\,c) = 
 \begin{cases} 
@@ -21,6 +22,7 @@ When it comes to the noisy channel model, the log likelihood is defined as follo
 -\gamma \cdot \log\left(d(c, x)\right) & \text{otherwise}
 \end{cases}
 \end{aligned}
+$$
 \\]
 where $c$ refers to the candidate, $x$ refers to the original word, and $d(\cdot, \cdot)$ refers to the [Damerau-Levenshtein edit distance](https://en.wikipedia.org/wiki/Damerau%E2%80%93Levenshtein_distance). Intuitively, $\alpha$ controls the preference of the orignal word and $\gamma$ controls the weight of minimzing edit distance (compared to the prior distribution obtained from the LLM).
 
