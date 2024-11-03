@@ -7,10 +7,12 @@ collection: portfolio
 Link to the code: [GitHub repository](https://github.com/hanyang-hu/HS2914-auto-correction-project).
 
 Although this is a group project, I will mainly discuss the part that has been done by myself in this post: my part is to implement a simplified version of [this paper](https://aclanthology.org/W19-4420.pdf) that combines large language models with the [noisy channel model](https://web.stanford.edu/~jurafsky/slp3/B.pdf) for automatic sentence correction. This is a very simple project, but it is interesting to think of the limitations of this naive approach and appreciate the relevant research that has been conducted in this field to mitigate the issues we discussed. 
+
+We choose [a pre-trained BERT model provided by Hugging Face](https://huggingface.co/docs/transformers/model_doc/bert) with the architecture illustrated below:
 <p align="center">
     <img src="./bert.png" alt="BERT Architecture" width="400"/><br/>
 </p>
-which is especially good at "understanding" the meaning of sentences: even if part of the sentence is wrong due to typos, we can mask them and make good predictions as long as the model captures the sentence overall. 
+BERT is especially good at "understanding" the meaning of sentences: even if part of the sentence is wrong due to typos, we can mask them and make good predictions as long as the model captures the sentence overall. 
 
 When it comes to the noisy channel model, the log likelihood is defined as follows:
 <p align="center">
