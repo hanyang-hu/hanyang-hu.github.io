@@ -4,7 +4,7 @@ excerpt: "Reflections on my summer undergraduate research project in 2024.<br/><
 collection: portfolio
 ---
 
-Links to the materials: [report](UROPS_REPORT_Hu_Hanyang_Jonathan_Scarlett.pdf) | [slides](UROPS_SLIDE_Hu_Hanyang_Jonathan_Scarlett.pdf) | [GitHub repository](https://github.com/hanyang-hu/unstructured_highdim_bo).
+Links to the materials: [report](UROPS_REPORT_Hu_Hanyang_Jonathan_Scarlett.pdf) \| [slides](UROPS_SLIDE_Hu_Hanyang_Jonathan_Scarlett.pdf) \| [GitHub repository](https://github.com/hanyang-hu/unstructured_highdim_bo).
 
 
 This is a credit-bearing undergraduate research project (MA3288) under the supervision of Prof. Jonathan Scarlett during the summer of 2024. The focus was around [this paper](https://arxiv.org/abs/2402.02229) by Hvarfner et al. that proposed the **dimensionality-scaled lengthscale prior** (DSP) to counteract the increase in complexity due to increased dimensionality, which relates to the [hypercube line picking problem](https://mathworld.wolfram.com/HypercubeLinePicking.html): for two points uniformly sampled in the \\(D\\)-dimensional hypercube, the mean distance between them grows asymptotically as fast as \\(\sqrt{D}\\), and hence **data points tend to be less correlated in higher dimensions**. Therefore, the DSP approach simply **scales up** the expectation of the prior of lengthscales by a factor of \\(\sqrt{D}\\), which could also be interpreted as imposing a low-complexity assumption on the objective functions, without using any structural assumptions (e.g., locality, low-dimensional active subspaces, etc.). 
