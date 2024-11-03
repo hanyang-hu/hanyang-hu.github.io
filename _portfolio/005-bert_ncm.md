@@ -11,9 +11,11 @@ Although this is a group project, I will mainly discuss the part that has been d
 Specifically, I choose the [BERT model from Hugging Face](https://huggingface.co/docs/transformers/model_doc/bert) and define the log likelihood as follows:
 \\[
     \log P(\text{original\_word}\,|\,\text{candidate}) = 
-\begin{align*}
+\left\{
+\begin{aligned}
 \alpha & \quad \text{if } \text{candidate} = \text{original\_word} \\
 -\gamma \cdot \log\left(d(\text{candidate}, \text{original\_word})\right) & \quad \text{otherwise}
-\end{align*}
+\end{aligned}
+\right.
 \\]
 where $d(\cdot, \cdot)$ refers to the Damerau-Levenshtein edit distance. Intuitively, $\alpha$ controls the preference of the orignal word and $\gamma$ controls the weight of minimzing edit distance (compared to the prior distribution obtained from the LLM).
