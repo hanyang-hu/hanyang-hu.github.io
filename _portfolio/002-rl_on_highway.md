@@ -1,5 +1,16 @@
 ---
 title: "Reinforcement Learning in the HighwayEnv"
-excerpt: "A personal project to implement RL methods (mainly imitation learning) and test on the HighwayEnv.<br/><img src='/images/highway_env.gif'>"
+excerpt: "A personal project to implement RL methods and test on the HighwayEnv.<br/><img src='/images/highway_env.gif'>"
 collection: portfolio
 ---
+
+Links to the code: [social attention](https://github.com/hanyang-hu/social-attention-exp) | [behavioral cloning & implicit Q learning](https://github.com/hanyang-hu/imitation-learning-exp) | [state space models](https://canvas.nus.edu.sg/)
+
+My motivation for implementing RL algorithms in the [HighwayEnv](https://github.com/Farama-Foundation/HighwayEnv) stems from an interest in scenarios where observations are provided as a set of inputs, rather than as feature vectors or images. For instance, consider an aimbot system that uses bounding boxes from a YOLO object detection model. This setup requires the use of permutation-invariant architectures, such as [Deep Sets](https://arxiv.org/abs/1703.06114) or [Social Attention](https://arxiv.org/abs/1911.12250). I implemented both, and as anticipated, the attention mechanism performed better.
+
+However, I faced challenges with my implementations of DQN, SAC, and model-based planning (based on state space models with a pre-trained self-attention encoder), which did not yield the desired results. Consequently, I shifted my focus to behavioral cloning and [Implicit Q learning](https://arxiv.org/abs/2110.06169) (IQL reduces to BC in certain cases). Interestingly, I found that the model was able to mimic my behavior (yes, I spent hours to intereact with the environment to collect human behavior data). For example, I noticed my preference for staying in the rightmost lane when possible and accelerating until blocked by other vehicles. You can observe this in the GIF below: <br/><img src='/images/highway_env.gif' alt="Highway Environment GIF"><br/>
+
+I later discovered that the previous approaches likely failed due to poor reward signals for discrete actions, which were consistently close to 1, except in cases of vehicle crashes (which is rare). Additionally, the discrete nature of the actions resulted in an imbalanced behavioral dataset, as the ego vehicle was IDLE most of the time. To mitigate the latter, I applied the technique of [Focal Loss](https://arxiv.org/abs/1708.02002). However, for the former issue, collecting manual driving data for continuous actions would be quite challenging, so I did not continue on that direction.
+
+I later used the same implementation of IQL, combined with [reward shaping](https://people.eecs.berkeley.edu/~russell/papers/icml99-shaping.pdf), to explore the potential for learning-based navigation using an OpenCV-based simulator for the [RoboMaster University League](https://www.robomaster.com/en-US/robo/college-league?djifrom=nav) robotics competition wrapped as a [Gym environment](https://gymnasium.farama.org/). The state space is based on the localization result from a particle filter (also implemented by the team I lead). While the code isn't publicly available, you can view how it performs below:
+<br/><img src='./screen_recording_iql.gif' alt="IQL GIF"><br/>
