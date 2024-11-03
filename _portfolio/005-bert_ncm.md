@@ -13,8 +13,8 @@ Although this is a group project, I will mainly discuss the part that has been d
 which is especially good at "understanding" the meaning of sentences: even if part of the sentence is wrong due to typos, we can mask them and make good predictions as long as the model captures the sentence overall. 
 
 When it comes to the noisy channel model, the log likelihood is defined as follows:
-\\[
-$
+<p align="center">
+$$
 \begin{aligned}
 \log P(x\,|\,c) = 
 \begin{cases} 
@@ -22,8 +22,8 @@ $
 -\gamma \cdot \log\left(d(c, x)\right) & \text{otherwise}
 \end{cases}
 \end{aligned}
-$
-\\]
+$$
+</p>
 where $c$ refers to the candidate, $x$ refers to the original word, and $d(\cdot, \cdot)$ refers to the [Damerau-Levenshtein edit distance](https://en.wikipedia.org/wiki/Damerau%E2%80%93Levenshtein_distance). Intuitively, $\alpha$ controls the preference of the orignal word and $\gamma$ controls the weight of minimzing edit distance (compared to the prior distribution obtained from the LLM).
 
 We could intuitively see the effect of these hyperparameters from the examples below: 
