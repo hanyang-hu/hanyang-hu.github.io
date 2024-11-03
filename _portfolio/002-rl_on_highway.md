@@ -15,4 +15,6 @@ I later discovered that the previous approaches likely failed due to poor reward
 I later used the same implementation of IQL, combined with [reward shaping](https://people.eecs.berkeley.edu/~russell/papers/icml99-shaping.pdf), to explore the potential for learning-based navigation using an OpenCV-based simulator for the [RoboMaster University League](https://www.robomaster.com/en-US/robo/college-league?djifrom=nav) robotics competition wrapped as a [Gym environment](https://gymnasium.farama.org/). The observation is based on the localization result from a particle filter (also implemented by the team I lead). While the code isn't publicly available, you can view how it performs below:
 <br/><img src='./screen_recording_iql.gif' alt="IQL GIF"><br/>
 
-(The shaded robot represents the state estimation from a particle filter.)
+The shaded robot represents the state estimation from a particle filter. The shaping function defined by \\(F(s, a, s') = \gamma * \phi(s') - \phi(s)\\) is based on the potential function
+\\[\phi(s) =  -(\alpha * \text{dist}(s, g) + \beta * \text{repulsion}(s))\\]
+where the coefficients $\alpha, \beta > 0$ are hyperparameters, \\(\text{dist}(s, g)\\) is the distance from the current state \\(s\\) to the goal, and \\(\text{repulsion}(s)\\) is the value of the repulsion at \\(s\\) (formulated by \\(c^{-d/l}\\) with hyperparameters \\(c, l > 0\\) and \\(d\\) being the minimum distance from \\(s\\) to all the barriers in the environment).
