@@ -21,7 +21,7 @@ $$
 -\gamma \cdot \log\left(d(c, x)\right) & \text{otherwise}
 \end{cases}
 \end{aligned}
-$$
+$$<br/>
 where $c$ refers to the candidate, $x$ refers to the original word, and $d(\cdot, \cdot)$ refers to the [Damerau-Levenshtein edit distance](https://en.wikipedia.org/wiki/Damerau%E2%80%93Levenshtein_distance). Intuitively, $\alpha$ controls the preference of the orignal word and $\gamma$ controls the weight of minimzing edit distance (compared to the prior distribution obtained from the LLM).
 
 We could intuitively see the effect of these hyperparameters from the examples below: 
