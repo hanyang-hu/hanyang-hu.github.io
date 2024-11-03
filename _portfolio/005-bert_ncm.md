@@ -7,14 +7,14 @@ collection: portfolio
 Link to the code: [GitHub repository](https://github.com/hanyang-hu/HS2914-auto-correction-project).
 
 Although this is a group project, I will mainly discuss the part that has been done by myself in this post: my part is to implement a simplified version of [this paper](https://aclanthology.org/W19-4420.pdf) that combines large language models with the [noisy channel model](https://web.stanford.edu/~jurafsky/slp3/B.pdf) for automatic sentence correction. This is a very simple project, but it is interesting to think of the limitations of this naive approach and appreciate the relevant research that has been conducted in this field to mitigate the issues we discussed. 
-
-Essentially, the LLMs are used as a prior for candidate words, and the noisy channel model are defined to be a likelihood, then the sentence correction problem could be formulated as an optimization problem on the posterior by the Bayes rule. Specifically, I choose the [BERT model from Hugging Face](https://huggingface.co/docs/transformers/model_doc/bert). Here is an illustration of its architecture:
-<img src="./bert.png" alt="BERT Architecture" width="400"/><br/>
+<p align="center">
+    <img src="./bert.png" alt="BERT Architecture" width="400"/><br/>
+</p>
 which is especially good at "understanding" the meaning of sentences: even if part of the sentence is wrong due to typos, we can mask them and make good predictions as long as the model captures the sentence overall. 
 
 When it comes to the noisy channel model, the log likelihood is defined as follows:
 \\[
-$$
+$
 \begin{aligned}
 \log P(x\,|\,c) = 
 \begin{cases} 
@@ -22,7 +22,7 @@ $$
 -\gamma \cdot \log\left(d(c, x)\right) & \text{otherwise}
 \end{cases}
 \end{aligned}
-$$
+$
 \\]
 where $c$ refers to the candidate, $x$ refers to the original word, and $d(\cdot, \cdot)$ refers to the [Damerau-Levenshtein edit distance](https://en.wikipedia.org/wiki/Damerau%E2%80%93Levenshtein_distance). Intuitively, $\alpha$ controls the preference of the orignal word and $\gamma$ controls the weight of minimzing edit distance (compared to the prior distribution obtained from the LLM).
 
