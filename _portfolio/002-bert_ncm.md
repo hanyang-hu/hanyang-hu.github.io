@@ -26,7 +26,7 @@ $$
 \end{aligned}
 $$
 </p>
-where $c$ refers to the candidate, $x$ refers to the original word, and $d(\cdot, \cdot)$ refers to the [Damerau-Levenshtein edit distance](https://en.wikipedia.org/wiki/Damerau%E2%80%93Levenshtein_distance), and $Z$ is just a normalizing constant that is not important in this context. Intuitively, $\alpha$ controls the preference of the orignal word and $\gamma$ controls the weight of minimzing edit distance (compared to the prior distribution obtained from the LLM).
+where $c$ refers to the candidate, $x$ refers to the original word, $d(\cdot, \cdot)$ refers to the [Damerau-Levenshtein edit distance](https://en.wikipedia.org/wiki/Damerau%E2%80%93Levenshtein_distance), and $Z$ is just a normalizing constant that is not important in this context. Intuitively, $\alpha$ controls the preference of the orignal word and $\gamma$ controls the weight of minimzing edit distance (compared to the prior distribution obtained from the LLM).
 
 We could intuitively see the effect of these hyperparameters from the examples below: 
 
