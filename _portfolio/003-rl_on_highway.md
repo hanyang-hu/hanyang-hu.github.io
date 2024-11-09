@@ -17,4 +17,4 @@ I also used the same implementation of IQL, combined with [reward shaping](https
 
 The shaded robot represents the state estimation from a particle filter. The shaping function defined by \\(F(s, a, s') = \gamma * \phi(s') - \phi(s)\\) is based on the potential function
 \\[\phi(s) =  -(\alpha * \text{dist}(s, g) + \beta * \text{repulsion}(s))\\]
-where the coefficients $\alpha, \beta > 0$ are hyperparameters, \\(\text{dist}(s, g)\\) is the distance from the current state \\(s\\) to the goal, and \\(\text{repulsion}(s)\\) is the value of the repulsion at \\(s\\), formulated by \\(c^{-d/l}\\) with hyperparameters \\(c, l > 0\\) and \\(d\\) being the minimum distance from \\(s\\) to all the barriers in the environment.r
+where the coefficients $\alpha, \beta > 0$ are hyperparameters, \\(\text{dist}(s, g)\\) is the distance from the current state \\(s\\) to the goal, and \\(\text{repulsion}(s)\\) is the value of the repulsion at \\(s\\). Specifically, \\(\text{repulsion}(s)=c^{-d/l}\\) where \\(c, l > 0\\) are hyperparameters and \\(d\\) is the minimum distance from \\(s\\) to all the barriers in the environment.
