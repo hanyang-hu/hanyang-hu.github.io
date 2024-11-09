@@ -13,7 +13,8 @@ I found this topic interesting since the geometry of non-Euclidean parameter spa
 The method that I focused on in this project was [UMAP](https://arxiv.org/abs/1802.03426) and its [parametric version](https://arxiv.org/abs/2009.12981). Except from reading these papers, I learned most details and intuitions about this approach from going through the [official implementations](https://github.com/lmcinnes/umap) and the [official documents](https://umap-learn.readthedocs.io/en/latest/). My report has some add-ons to the explanation of the attractive and repulsive forces, e.g. how they behave as the probabilistic weight changes.
 
 In addition, I also explored using probabilistic PCA on the nearest neighbors to approximate the tangent space (and hence estimate the dimension of the underlying manifold), it worked as expected (see the report if you are interested). It is based on the simple insight that the tangent space of an \\(n\\)-dimensional manifold is an \\(n\\)-dimensional vector space: Let $$\phi: U_\alpha \to \mathbb{R}^n$$ be a chart of the manifold \\(M\\), then \\(\phi\\) induces an isomorphism $$\phi^\ast: \mathcal{E}_{\mathbb{R}^n}(V') \to \mathcal{E}_M(\phi^{-1}(V'))$$ where \\(V'\\) is an open subset of \\(\phi(U)\\). Let \\(p \in U_\alpha\\) and take the direct limit, we have an isomorphism $$\phi_p^\ast: \mathcal{E}_{\mathbb{R}^n,\phi(p)}\to\mathcal{E}_{M, p}$$. Put \\(d\phi_p: T_p(M) \to T_{\phi(p)}(\mathbb{R}^n)\\) such that \\(d\phi_p(D) = D\circ \phi_p^\ast \in T_{\phi(p)}(\mathbb{R}^n)\\) for all \\(D \in T_p(M)\\). Notice that the following diagram commutes:
-<img src='tangent_cd.png' alt='Commutative Diagram' width='50%'>
+<p align="center">
+<img src='tangent_cd.png' alt='Commutative Diagram' width='20%'>
 </p>
 hence the Jacobian \\(d\phi_p: T_p(M) \to T_{\phi(p)}(\mathbb{R}^n)\\) is a linear isomorphism between the tangent spaces. It is known that 
 <p align="center">
