@@ -23,5 +23,3 @@ Consequently, the Jacobian \\(d\phi_p: T_p(M) \to T_{\phi(p)}(\mathbb{R}^n)\\) i
 $$T_{\phi(p)}(\mathbb{R}^n) = \text{span}\left(\left\{\frac{\partial}{\partial x_1}, \ldots, \frac{\partial}{\partial x_n}\right\}\right)$$
 </p>
 is an \\(n\\)-dimensional vector space, hence the tangent space \\(T_p(M)\\) of the \\(n\\)-dimensional manifold \\(M\\) at point \\(p\\) is also \\(n\\)-dimensional.
-
-**Note.** For some unknown reason, my implementation of parametric UMAP in PyTorch was about 10 times slower in training speed compared to the official implementation. Although the final result seems okay, the slower training speed was unexpected and something I hope to optimize in the future (if I plan to use it for my other projects, and if I have time...).
