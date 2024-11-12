@@ -18,7 +18,7 @@ satisfying the following equalities:
 
 Consider the disjoint union \\(\tilde{E} = \sqcup_{\alpha \in I} U_\alpha \times K^r\\) equipped with the natural product topology and \\(\mathcal{S}\\)-structure. Define an equivalence relation on \\(\tilde{E}\\) such that for \\((x, v) \in U_\beta \times K^r\\) and \\((y, w) \in U_\alpha \times K^r\\), \\((x, v) \sim (y, w)\\) iff. \\(y = x\\) and \\(w = g_{\alpha\beta}(x)v\\). This is indeed an equivalence relation due to the constraints on the transition functions. 
 
-We have a natrual surjection \\(\text{CL}: \tilde{E} \to E\\) by sending \\((x, v)\\) to its equivalence class. We equip \\(E\\) with the quotient topology, then \\(\pi: E \to X\\) defined by \\(\pi(\text{CL}(x, v)) = x\\) is an \\(\mathcal{S}\\)-bundle.
+We have a natural surjection \\(\text{CL}: \tilde{E} \to E\\) by sending \\((x, v)\\) to its equivalence class. We equip \\(E\\) with the quotient topology, then \\(\pi: E \to X\\) defined by \\(\pi(\text{CL}(x, v)) = x\\) is an \\(\mathcal{S}\\)-bundle.
 
 This shows the **existence** of vector bundles given a collection of transition functions, and it is natural to ask whether such construction is **unique** (which is a question raised by my classmate in [MA5210 Differentiable Manifolds](https://nusmods.com/courses/MA5210/differentiable-manifolds)). Let \\(\pi_0: E_0 \to X\\) and \\(\pi_1: E_1 \to X\\) be \\(\mathcal{S}\\)-bundles with the same trivializing open cover \\(\\{U_\alpha\\}\\) and collection of transition functions \\(\\{g_{\alpha\beta}\\}\\), it turns out that they are indeed \\(\mathcal{S}\\)-bundle isomorphic. 
 
