@@ -214,7 +214,7 @@ We could see that there is a noticable discrepancy in the control trajectories f
 <img src='neural_ode_init_x_traj.png'>
 </p>
 
-The solutions of the Neural ODE are indeed closer to those of the RDE method. Perhaps, if you zoom in very closely, the result of Neural ODE is closer to the RDE solution (compared to the case without a learned initialization).
+The solutions of the Neural ODE are indeed closer to those of the RDE method. Perhaps, if you zoom in very closely, the position trajectory from the Neural ODE solution is closer to the RDE solution (compared to the case without a learned initialization).
 
 ## Some Discussions
 
