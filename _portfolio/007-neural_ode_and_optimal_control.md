@@ -35,10 +35,87 @@ $$
 
 where the Hamiltonian $$H(t,x, p, u) = p^\top f(t, x, u) - L(t, x, u)$$. 
 
-The method of successive approximations (MSA) is based on the PMP.
+The **method of successive approximations (MSA)** is based on the PMP.
 <p align="center">
 <img src='msa.png' alt='MSA Algorithm'>
 </p>
+**Remark.** We use $$u(\cdot)$$ to denote the control instead of $$\theta(\cdot)$$ as in the above algorithm. We will use $$u(\cdot)$$ unless otherwise mentioned.
+
+Moreover, the update step 
+\\[
+    u(t) \gets \argmax_u H(t, x(t), p(t), u)
+\\] 
+could be replaced by some gradient update rule 
+\\[
+    u_t \gets u_t + \eta \cdot \nabla_u H(t, x_t, p_t, u_t)
+\\]
+according to the following improvement guarantee (subject to some mild assumptions)
+
+$$
+\displaylines{
+    J[u^\prime] - J[u] \leq -(S[u^\prime] - S[u]) + C \int_{t_0}^{t_1} \|u_t^\prime - u_t\|^2 dt
+}
+$$
+
+where $$x_t$$ and $$p_t$$ are computed based on $$u$$ and $$S[u] = \int_{t_0}^{t_1} H(t, x_t, p_t, u^\prime)dt. That is to say, as long as we could increase the integral of the Hamiltonian $$S[u]$$ by some small perturbations, we are guaranteed to find better controls. 
+
+## Neural ODE
+
+We attempt to interpret the **adjoint sensitivities algorithm** used in [Neural ODEs](https://arxiv.org/abs/1806.07366) in the context of optimal control. In particular, consider the Mayer problem for simplicity
+
+$$
+\displaylines{
+    \inf_u J[u] = \Phi(x(t_1)) \\\
+    \text{ s.t. } \dot{x}(t) = f(t, x(t), u(t)), \qquad t \in [t_0, t_1], \qquad x(t_0) = x_0.
+}
+$$
+
+Assume that the control $$u_\theta(\cdot)$$ is parameterized by $$\theta \in \Theta$$ in the parameter space $$\Theta$$ (e.g., $$u_\theta(\cdot)$$ is an MLP), then we could re-formulate the original problem as
+
+$$
+\displaylines{
+    \inf_{\theta \in \Theta} J(\theta) = \Phi(x(t_1))
+    \text{ s.t. } \dot{x}(t) = g(t, x(t), \theta(t)), \qquad t \in [t_0, t_1], \qquad x(t_0) = x_0.
+}
+$$
+
+where $$\theta(t) \equiv \theta$$ is a constant and $$g(t, x(t), \theta(t)) = f(t, x(t), u_\theta(t))$$. By the adjoint sensitivities algorithm, the following gradient update rule with learning rate $&\eta$& should be applied
+\[
+    \theta_{\text{next}} \gets \theta + \eta \nabla_\theta J(\theta) 
+\]
+where
+
+$$
+\displaylines{
+    \nabla_\theta J(\theta) = \int_{t_0}^{t_1}p(t)^\top \nabla_\theta g(t, x(t), \theta)dt \\\
+    \text{ s.t.}\qquad &\dot{x}(t) = \nabla_p H(t, x(t), p(t), \theta), \qquad x(0)=x_0 \\\
+    \dot{p}(t) =-\nabla_x H(t, x(t), p(t), \theta), \qquad p(T)=-\nabla_x\Phi(x(T))
+}
+$$
+
+with $$H(t, x, p, \theta) = p^\top g(t, x, \theta)$$. We may observe that this is equivalent to a variant of the MSA using the steepest ascent.
+
+By the PMP, the optimal parameter $$\theta^\ast$$ satisfies
+
+$$
+\displaylines{
+    \dot{x}^\ast(t) = \nabla_p H(t, x^\ast(t), p^\ast(t), \theta^\ast), \qquad x^\ast(0)=x_0 \\\
+    \dot{p}^\ast(t) =-\nabla_x H(t, x^\ast(t), p^\ast(t), \theta^\ast), \qquad p^\ast(T)=-\nabla_x\Phi(x^\ast(T)) \\\
+    H(t, x^\ast(t), p^\ast(t), \theta^\ast) \geq H(t, x^\ast(t), p^\ast(t), \theta) \qquad (\text{for all $\theta \in \Theta$ and a.e. $t \in [0, T]$}).
+}
+$$
+
+Notice that the last condition necessarily requires
+\[
+    \int_{t_0}^{t_1}H(t, x^\ast(t), p^\ast(t), \theta^\ast)dt \geq \int_{t_0}^{t_1}H(t, x^\ast(t), p^\ast(t), \theta)dt \qquad (\text{for all } \theta \in \Theta).
+\]
+Some intuitions behind our focus on this relaxed condition could be: (1) from the improvement guarantee aforementioned, we only need to optimize the integral of the Hamiltonian; (2) assuming we are using the MSA to solve this converted problem, since we want the neural network parameters to be a constant, we could average over the updated parameters, which results in an integral. 
+
+Consequently, t makes sense to use the following gradient update rule with learning rate $$\eta$$
+\[
+    \theta_{\text{next}} \gets \theta + \eta\nabla_\theta \int_{t_0}^{t_1}H(t, x(t), p(t), \theta)dt.
+\]
+Interchanging the integration and differentiation, it is easy to verify that this is equivalent to the gradient update rule in the adjoint sensitivites algorithms. 
 
 ## Hamilton-Jacobi-Bellman Equation
 
@@ -57,7 +134,7 @@ The HJB equation is given by
 \\[
 \partial_t V(t, x) + \inf_{u}\{L(t, x, u) + [\nabla_x V(t, x)]^\top f(t, x, u)\} \quad \text{ s.t. } \quad V(t_1, x) = \Phi(x).
 \\]
-Some connections could be observed between the PMP and the HJB equations. For example, we could consider the co-state as $$p = -\nabla_x V(t, x)$$ (this is the **adjoint$$ mentioned in the [Neural ODE paper](https://arxiv.org/abs/1806.07366)).
+Some connections could be observed between the PMP and the HJB equations. For example, we could consider the co-state as $$p = -\nabla_x V(t, x)$$ (this is the **adjoint** mentioned in the [Neural ODE](https://arxiv.org/abs/1806.07366) paper).
 
 ## Linear Quadratic Regulator (LQR)
 
@@ -79,7 +156,7 @@ satisfies the HJB equations for the LQR problem. Furthermore, the optimal contro
 \\[
     u^\ast(t) = -R^{-1}(t)B^\top(t)P(t)x^\ast(t).
 \\]
-Therefore, we could use the numerical solution of the above RDE as a baseline.
+Therefore, we could obtain a baseline by finding a numerical solution of the above RDE.
 
 ## A Simple Application
 
