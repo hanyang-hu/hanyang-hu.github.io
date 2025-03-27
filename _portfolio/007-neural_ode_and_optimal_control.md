@@ -29,7 +29,7 @@ $$
 \displaylines{
     \dot{x}^\ast(t) = \nabla_p H(t, x^\ast(t), p^\ast(t), u^\ast(t)), \qquad x^\ast(0)=x_0 \\\
     \dot{p}^\ast(t) =-\nabla_x H(t, x^\ast(t), p^\ast(t), u^\ast(t)), \qquad p^\ast(T)=-\nabla_x\Phi(x^\ast(T)) \\\
-    H(t, x^\ast(t), p^\ast(t), u^\ast(t)) \geq H(t, x^\ast(t), p^\ast(t), u) \qquad (\text{for all $u \in \mathbb{R}^m$ and a.e. $t \in [0, T]$).
+    H(t, x^\ast(t), p^\ast(t), u^\ast(t)) \geq H(t, x^\ast(t), p^\ast(t), u) \qquad (\text{for all $u \in \mathbb{R}^m$ and a.e. $t \in [0, T]$}).
 }
 $$
 
