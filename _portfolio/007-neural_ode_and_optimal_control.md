@@ -123,7 +123,7 @@ Some intuitions behind our focus on this relaxed condition could be:
 
 2. Assuming we are using the MSA to solve this converted problem, since we want the neural network parameters to be a constant, we could average the updated parameters at different timesteps, which results in an integral. 
 
-Consequently, t makes sense to use the following gradient update rule with learning rate $$\eta$$
+Consequently, it makes sense to use the following gradient update rule with learning rate $$\eta$$
 
 $$
 \displaylines{
@@ -131,7 +131,7 @@ $$
 }
 $$
 
-Interchanging the integration and differentiation, it is easy to verify that this is equivalent to the gradient update rule in the adjoint sensitivites algorithms. 
+Interchanging the integration and differentiation, it is easy to verify that this is equivalent to the gradient update rule in the adjoint sensitivites algorithms for the Mayer problems. However, we could also consider the Bolza problems where the Lagrangian is not zero, which could be interpreted as adding a regularization term.
 
 ## Hamilton-Jacobi-Bellman Equation
 
@@ -176,4 +176,56 @@ Therefore, we could obtain a baseline by finding a numerical solution of the abo
 
 ## A Simple Application
 
-[...]
+Consider the following controlled system (say, of a vehicle)
+
+$$
+\displaylines{
+    \dot{x}_t = v_t, \\\
+    \dot{v}_t = -\alpha(t)v_t + u_t
+}
+$$
+
+where $\alpha(t)$ is the resistance at time $$t$$. Suppose the initial state is $$(x_0, v_0) = (1, 0)$$, we would like to drive the vehicle so that $$x_1$$ is as close to the origin as possible. Meantime, we introduce an action penalty $$\lambda u_t^2$$. Together, this defines an optimal control problem
+
+$$
+\displaylines{
+    \inf_{u} x_1^2 + \lambda \int_0^1 u_t^2 dt \\\
+    \text{ s.t. } \qquad \dot{x}_t = v_t, \dot{v}_t = -\alpha(t)v_t + u_t, \text{ and } (x_0, v_0) = (1, 0).
+ }
+$$
+
+We could solve this LQR problem based on the RDE method (which should be more reliable in this simple problem) and the Neural ODE. The results are plotted below
+
+<p align="center">
+<img src='neural_ode_no_init.png'>
+</p>
+
+<p align="center">
+<img src='neural_ode_no_init_x_traj.png'>
+</p>
+
+We could see that 
+
+## Some Discussions
+
+In this simple example, the RDE solution is not only more reliable but also significantly more efficient, as it requires only one forward pass and one backward pass through the numerical solver. In contrast, each gradient update step for the Neural ODE (with a total of 1000 steps) necessitates both a forward pass and a backward pass. Nevertheless, the Neural ODE could be applied in a more general setting, whereas the RDE method is limited to simpler problems, such as the LQR. Moreover, an advantage of the Neural ODE over other variants of the method of successive approximation (MSA) is that it requires constant memory, whereas conventional MSAs need to maintain $$\{u(t^{(0)}), \ldots, u(t^{(n)})\}$$ for different timesteps.
+
+We should notice that Neural ODE is essentially based on a relaxed version of the PMP, which does not necessarily guarantee optimality. This suggests that we may want to use better optimizers (e.g., momentum method or Nesterov accelerated gradient) or better initialization when applying Neural ODE to avoid sticking in local optima. For example, we may want to use a simple control trajectory that is sufficiently close to the optimal trajectory (albeit potentially non-optimal) to learn the initialization parameters, then use Neural ODE to fine-tune the result.
+
+Additionally, physics-informed neural networks (PINNs) could be another deep learning approach for solving optimal control problems. In this framework, one can train a PINN to learn a value function that satisfies the HJB equation and subsequently extract the optimal control $$u^\ast(\cdot)$$. However, the term
+
+$$
+\displaylines{
+    \inf_{u \in \mathbb{R}^m}\left\{L(t, u, x) + \left[\partial_x V(t, x)\right]^\top f(t, u, x)\right\}
+}
+$$
+    
+may be intractable for automatic differentiation, which necessitates learning a parameterized control $$u_\theta$$ that approximates $$u^\ast$$, and subsequently approximating the above infimum with
+
+$$
+\displaylines{
+    L(t, u_\theta(t), x) + \left[\partial_x V(t, x)\right]^\top f(t, u_\theta(t), x)
+}
+$$
+
+similar to the treatments in deep reinforcement learning.
