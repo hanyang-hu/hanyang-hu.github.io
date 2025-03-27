@@ -13,36 +13,39 @@ Links to the materials: [report](MA5232_Assignment_2.pdf) \| [GitHub repository]
 Consider the ODE $$\dot{x}(t) = f(t, x(t), u(t))$$ for $$t \in [t_0, t_1]$$ and $$x(t_0) = x_0$$. 
 
 The Bolza problem with a Lagrangian $$L(t, x(t), u(t))$$ and a terminal cost function $$\Phi(t_1, x(t_1))$$ is stated below
-$$
+\\[
 \begin{aligned}
     &\inf_{u} J[u] = \int_{t_0}^{t_1} L(t, x(t), u(t))dt + \Phi(t_1, x(t_1))\\ 
     &\text{ s.t. } \quad \dot{x}(t) = f(t, x(t), u(t)) \quad \text{ and } \quad x(t_0) = x_0.
 \end{aligned}
-$$
+\\]
 
-## Pontryagin’s Maximum Principle and Neural ODE
+## Pontryagin’s Maximum Principle
 
 By the **Pontryagin’s maximum principle (PMP)**, the optimal control $u^\ast$ and the corresponding state trajectory $x^\ast$ and co-state trajectory $p^\ast$ must satisfy
-$$
+\\[
 \begin{aligned}
     &\dot{x}^\ast(t) = \nabla_p H(t, x^\ast(t), p^\ast(t), u^\ast(t)), \qquad x^\ast(0)=x_0\\
     &\dot{p}^\ast(t) =-\nabla_x H(t, x^\ast(t), p^\ast(t), u^\ast(t)), \qquad p^\ast(T)=-\nabla_x\Phi(x^\ast(T))\\
     &H(t, x^\ast(t), p^\ast(t), u^\ast(t)) \geq H(t, x^\ast(t), p^\ast(t), u) \qquad (\text{for all $u \in \mathbb{R}^m$ and a.e. $t \in [0, T]$).}
 \end{aligned}
-$$
+\\]
 where the Hamiltonian $$H(t,x, p, u) = p^\top f(t, x, u) - L(t, x, u)$$. 
 
-[...]
+The method of successive approximations (MSA) is based on the PMP.
+<p align="center">
+<img src='msa.png' alt='MSA Algorithm'>
+</p>
 
 ## Hamilton-Jacobi-Bellman Equation
 
 The PMP is a necessary condition for optimal control, a sufficient condition could be the **Hamilton-Jacobi-Bellman (HJB) equations**. It is similar to the Bellman equations in the context of reinforcement learning. Firstly, we need to define the value function
-$$
+\\[
 \begin{aligned}
 &V(s, z) = \inf_{u} \int_{s}^{t_1} L(t, x(t), \theta(t))dt + \Phi(x(t_1)) \\
 &\text{ s.t. } \quad \dot{x}(t) = f(t, x(t), u(t)) \quad \text{ and } \quad x(s) = z.
 \end{aligned}
-$$
+\\]
 That is to say, the value function $$V(s, z)$$ is the minimum cost attainable starting from the state $$z$$ at time $$t$$. 
 
 The HJB equation is given by
