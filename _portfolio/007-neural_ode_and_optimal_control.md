@@ -131,7 +131,7 @@ $$
 }
 $$
 
-Interchanging the integration and differentiation, it is easy to verify that this is equivalent to the gradient update rule in the adjoint sensitivites algorithms for the Mayer problems. However, we could also consider the Bolza problems where the Lagrangian is not zero, which could be interpreted as adding a regularization term.
+Interchanging the integration and differentiation, it is easy to verify that this is equivalent to the gradient update rule in the adjoint sensitivites algorithms for the Mayer problems. However, we could also consider the Bolza problems where the Lagrangian is nonzero, which could be interpreted as adding a regularization term.
 
 ## Hamilton-Jacobi-Bellman Equation
 
@@ -204,15 +204,25 @@ We could solve this LQR problem based on the RDE method (which should be more re
 <img src='neural_ode_no_init_x_traj.png'>
 </p>
 
-We could see that 
+We could see that there is a noticable discrepancy in the control trajectories from the RDE method and the Neural ODE. Nevertheless, the resulting position trajectories remain similar. We hypothesize that the discrepancy in controls arises because the Neural ODE becomes trapped in a local optimum. To test this hypothesis, we pre-trained the MLP-based control $$u_\theta$$ to fit the RDE solution and then randomly perturbed the pre-trained parameters to obtain an initialization.
+
+<p align="center">
+<img src='neural_ode_init.png'>
+</p>
+
+<p align="center">
+<img src='neural_ode_init_x_traj.png'>
+</p>
+
+The solutions of the Neural ODE are indeed closer to those of the RDE method. Perhaps, if you zoom in very closely, the result of Neural ODE is closer to the RDE solution (compared to the case without a learned initialization).
 
 ## Some Discussions
 
 In this simple example, the RDE solution is not only more reliable but also significantly more efficient, as it requires only one forward pass and one backward pass through the numerical solver. In contrast, each gradient update step for the Neural ODE (with a total of 1000 steps) necessitates both a forward pass and a backward pass. Nevertheless, the Neural ODE could be applied in a more general setting, whereas the RDE method is limited to simpler problems, such as the LQR. Moreover, an advantage of the Neural ODE over other variants of the method of successive approximation (MSA) is that it requires constant memory, whereas conventional MSAs need to maintain $$\{u(t^{(0)}), \ldots, u(t^{(n)})\}$$ for different timesteps.
 
-We should notice that Neural ODE is essentially based on a relaxed version of the PMP, which does not necessarily guarantee optimality. This suggests that we may want to use better optimizers (e.g., momentum method or Nesterov accelerated gradient) or better initialization when applying Neural ODE to avoid sticking in local optima. For example, we may want to use a simple control trajectory that is sufficiently close to the optimal trajectory (albeit potentially non-optimal) to learn the initialization parameters, then use Neural ODE to fine-tune the result.
+We should notice that Neural ODE is essentially based on a relaxed version of the PMP, which does not necessarily guarantee optimality. This suggests that we may want to use better optimizers (e.g., **momentum method** or **Nesterov accelerated gradient**) or **better initializations** when applying Neural ODE to avoid sticking in local optima. For example, we may want to use a simple control trajectory that is sufficiently close to the optimal trajectory (albeit potentially non-optimal) to learn the initialization parameters, then use Neural ODE to fine-tune the result.
 
-Additionally, physics-informed neural networks (PINNs) could be another deep learning approach for solving optimal control problems. In this framework, one can train a PINN to learn a value function that satisfies the HJB equation and subsequently extract the optimal control $$u^\ast(\cdot)$$. However, the term
+Additionally, **physics-informed neural networks (PINNs)** could be another deep learning approach for solving optimal control problems. In this framework, one can train a PINN to learn a value function that satisfies the HJB equation and subsequently extract the optimal control $$u^\ast(\cdot)$$. However, the term
 
 $$
 \displaylines{
