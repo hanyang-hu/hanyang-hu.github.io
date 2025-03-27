@@ -66,7 +66,7 @@ We attempt to interpret the **adjoint sensitivities algorithm** used in [Neural 
 $$
 \displaylines{
     \inf_u J[u] = \Phi(x(t_1)) \\\
-    \text{ s.t. } \dot{x}(t) = f(t, x(t), u(t)), \qquad t \in [t_0, t_1], \qquad x(t_0) = x_0.
+    \text{ s.t. } \qquad \dot{x}(t) = f(t, x(t), u(t)), \qquad t \in [t_0, t_1], \qquad x(t_0) = x_0.
 }
 $$
 
@@ -75,7 +75,7 @@ Assume that the control $$u_\theta(\cdot)$$ is parameterized by $$\theta \in \Th
 $$
 \displaylines{
     \inf_{\theta \in \Theta} J(\theta) = \Phi(x(t_1)) \\\
-    \text{ s.t. } \dot{x}(t) = g(t, x(t), \theta(t)), \qquad t \in [t_0, t_1], \qquad x(t_0) = x_0.
+    \text{ s.t. } \qquad \dot{x}(t) = g(t, x(t), \theta(t)), \qquad t \in [t_0, t_1], \qquad x(t_0) = x_0.
 }
 $$
 
@@ -92,8 +92,8 @@ where
 $$
 \displaylines{
     \nabla_\theta J(\theta) = \int_{t_0}^{t_1}p(t)^\top \nabla_\theta g(t, x(t), \theta)dt \\\
-    \text{ s.t.}\qquad \dot{x}(t) = \nabla_p H(t, x(t), p(t), \theta), \qquad x(0)=x_0 \\\
-    \dot{p}(t) =-\nabla_x H(t, x(t), p(t), \theta), \qquad p(T)=-\nabla_x\Phi(x(T))
+    \text{ s.t.} \qquad \dot{x}(t) = \nabla_p H(t, x(t), p(t), \theta), \qquad x(0)=x_0 \\\
+    \qquad \qquad \dot{p}(t) =-\nabla_x H(t, x(t), p(t), \theta), \qquad p(T)=-\nabla_x\Phi(x(T))
 }
 $$
 
@@ -119,14 +119,18 @@ $$
 
 Some intuitions behind our focus on this relaxed condition could be: 
 
-1. From the improvement guarantee aforementioned, we only need to optimize the integral of the Hamiltonian; 
+1. From the improvement guarantee aforementioned, we only need to locally optimize the integral of the Hamiltonian; 
 
-2. Assuming we are using the MSA to solve this converted problem, since we want the neural network parameters to be a constant, we could average over the updated parameters, which results in an integral. 
+2. Assuming we are using the MSA to solve this converted problem, since we want the neural network parameters to be a constant, we could average the updated parameters at different timesteps, which results in an integral. 
 
 Consequently, t makes sense to use the following gradient update rule with learning rate $$\eta$$
-\[
+
+$$
+\displaylines{
     \theta_{\text{next}} \gets \theta + \eta\nabla_\theta \int_{t_0}^{t_1}H(t, x(t), p(t), \theta)dt.
-\]
+}
+$$
+
 Interchanging the integration and differentiation, it is easy to verify that this is equivalent to the gradient update rule in the adjoint sensitivites algorithms. 
 
 ## Hamilton-Jacobi-Bellman Equation
