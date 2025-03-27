@@ -43,7 +43,7 @@ The **method of successive approximations (MSA)** is based on the PMP.
 
 Moreover, the update step 
 \\[
-    u(t) \gets \argmax_u H(t, x(t), p(t), u)
+    u(t) \gets \text{argmax}_u H(t, x(t), p(t), u)
 \\] 
 could be replaced by some gradient update rule 
 \\[
@@ -57,7 +57,7 @@ $$
 }
 $$
 
-where $$x_t$$ and $$p_t$$ are computed based on $$u$$ and $$S[u] = \int_{t_0}^{t_1} H(t, x_t, p_t, u^\prime)dt. That is to say, as long as we could increase the integral of the Hamiltonian $$S[u]$$ by some small perturbations, we are guaranteed to find better controls. 
+where $$x_t$$ and $$p_t$$ are computed based on $$u$$ and $$S[u] = \int_{t_0}^{t_1} H(t, x_t, p_t, u^\prime)dt$$. That is to say, as long as we could increase the integral of the Hamiltonian $$S[u]$$ by some small perturbations, we are guaranteed to find better controls. 
 
 ## Neural ODE
 
@@ -74,21 +74,25 @@ Assume that the control $$u_\theta(\cdot)$$ is parameterized by $$\theta \in \Th
 
 $$
 \displaylines{
-    \inf_{\theta \in \Theta} J(\theta) = \Phi(x(t_1))
+    \inf_{\theta \in \Theta} J(\theta) = \Phi(x(t_1)) \\\
     \text{ s.t. } \dot{x}(t) = g(t, x(t), \theta(t)), \qquad t \in [t_0, t_1], \qquad x(t_0) = x_0.
 }
 $$
 
-where $$\theta(t) \equiv \theta$$ is a constant and $$g(t, x(t), \theta(t)) = f(t, x(t), u_\theta(t))$$. By the adjoint sensitivities algorithm, the following gradient update rule with learning rate $&\eta$& should be applied
-\[
+where $$\theta(t) \equiv \theta$$ is a constant and $$g(t, x(t), \theta(t)) = f(t, x(t), u_\theta(t))$$. By the adjoint sensitivities algorithm, the following gradient update rule with learning rate $$\eta$$ should be applied
+
+$$
+\displaylines{
     \theta_{\text{next}} \gets \theta + \eta \nabla_\theta J(\theta) 
-\]
+}
+$$
+
 where
 
 $$
 \displaylines{
     \nabla_\theta J(\theta) = \int_{t_0}^{t_1}p(t)^\top \nabla_\theta g(t, x(t), \theta)dt \\\
-    \text{ s.t.}\qquad &\dot{x}(t) = \nabla_p H(t, x(t), p(t), \theta), \qquad x(0)=x_0 \\\
+    \text{ s.t.}\qquad \dot{x}(t) = \nabla_p H(t, x(t), p(t), \theta), \qquad x(0)=x_0 \\\
     \dot{p}(t) =-\nabla_x H(t, x(t), p(t), \theta), \qquad p(T)=-\nabla_x\Phi(x(T))
 }
 $$
@@ -106,10 +110,18 @@ $$
 $$
 
 Notice that the last condition necessarily requires
-\[
+
+$$
+\displaylines{
     \int_{t_0}^{t_1}H(t, x^\ast(t), p^\ast(t), \theta^\ast)dt \geq \int_{t_0}^{t_1}H(t, x^\ast(t), p^\ast(t), \theta)dt \qquad (\text{for all } \theta \in \Theta).
-\]
-Some intuitions behind our focus on this relaxed condition could be: (1) from the improvement guarantee aforementioned, we only need to optimize the integral of the Hamiltonian; (2) assuming we are using the MSA to solve this converted problem, since we want the neural network parameters to be a constant, we could average over the updated parameters, which results in an integral. 
+}
+$$
+
+Some intuitions behind our focus on this relaxed condition could be: 
+
+1. From the improvement guarantee aforementioned, we only need to optimize the integral of the Hamiltonian; 
+
+2. Assuming we are using the MSA to solve this converted problem, since we want the neural network parameters to be a constant, we could average over the updated parameters, which results in an integral. 
 
 Consequently, t makes sense to use the following gradient update rule with learning rate $$\eta$$
 \[
