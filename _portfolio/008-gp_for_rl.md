@@ -1,6 +1,6 @@
 ---
 title: "Efficient Gaussian Processes for Model-based Planning"
-excerpt: "Year-Long Mathematics Capstone Project at NUS.<br/><img src='/images/rl_env_overview.png'>"
+excerpt: "A brief summary of my final-year project at NUS.<br/><img src='/images/rl_env_overview.png'>"
 collection: portfolio
 ---
 
