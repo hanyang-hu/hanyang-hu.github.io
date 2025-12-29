@@ -12,6 +12,7 @@ Deep learning models excel in modeling complex dynamics, but incorporating physi
     L_\theta(q, \dot{q}) = \frac{1}{2} \dot{q}^\top M_\theta \dot{q} - U_\theta(q)
 \\]
 the Velocity-Verlet method gives an explicit update rule
+
 $$
 \displaylines{
     q_{k+1} = q_k + h \dot{q}_k - \frac{h^2}{2} M_\theta^{-1} \nabla U_\theta(q_k) \\\
