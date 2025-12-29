@@ -7,3 +7,21 @@ collection: portfolio
 Links to the materials: [report](MATH273A_LieFVIN_report.pdf) \| [slides](MATH273A_LieFVIN_slides.pdf) \| [GitHub repository](https://github.com/hanyang-hu/S3FVIN).
 
 
+Deep learning models excel in modeling complex dynamics, but incorporating physical priors like conservation laws can enhance their performance, especially in data-scarce regimes. Variational Integrator Networks (VINs) address this by embedding geometric numerical integrators into neural architectures. For a parameterized Lagrangian that characterizes a separable Newtonian system
+\\[
+    L_\theta(q, \dot{q}) = \frac{1}{2} \dot{q}^\top M_\theta \dot{q} - U_\theta(q)
+\\]
+the Velocity-Verlet method:
+$$
+\displaylines{
+    q_{k+1} = q_k + h \dot{q}_k - \frac{h^2}{2} M_\theta^{-1} \nabla U_\theta(q_k)
+    \dot{q}_{k+1} = \dot{q}_k - h M_\theta^{-1} \left( \frac{\nabla U_\theta(q_k) + \nabla U_\theta(q_{k+1})}{2} \right)
+}
+$$
+which can be interpreted as a feed-forward architecture.
+
+In control applications like robotics, external forces (e.g., damping, control inputs) are crucial. Forced Variational Integrator Networks (FVINs) extend VINs to model $$(q_k, \dot{q}_k, u_k) \mapsto (q_{k+1}, \dot{q}_{k+1})$$, where $$u_k$$ is the control input. This project extends LieFVINs from $$\text{SE}(3)$$ to the unit quaternion group $$S^3$$ for rigid body dynamics, hoping the less redundant representation of unit quaternions could be beneficial from the learning perspective. I also put some detailed discussions on the discrete variational mechanics with forces in the report, trying to strengthen my understanding of this subject.
+
+A key challenge with unit quaternions is their double-covering property ($$q$$ and $$-q$$ represent the same rotation). To address this, I introduce a sign-invariance trick that enforces physically equivalent predictions under quaternion sign flips. This modification significantly improves training stability and leads to approximately $$2\times$$ faster convergence on a planar pendulum task. 
+
+Beyond the quaternion-based model, I also improve the original  $$\text{SO}(3)$$-based LieFVIN by adding an internal rotation-to-quaternion conversion $$R \mapsto q$$. This simple design retains the efficiency of $$\text{SO}(3)$$-based LieFVIN (where the implicit update admits a closed-form Jacobian via the Cayley transform) while benefiting from the compactness of quaternions during learning.
